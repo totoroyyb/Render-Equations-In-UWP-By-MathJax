@@ -34,16 +34,38 @@
         }
 
         function ChangeEquation(param) {
-            var math = MathJax.Hub.getAllJax("equationml")[0];
-            MathJax.Hub.Queue(["Text", math, param]);
+            var str = "" + param;
+            var index = str.indexOf(",");
+            var lang = str.substring(0, index);
+            var newequ = str.substring(index + 1);
+            var math = MathJax.Hub.getAllJax(lang)[0];
+            MathJax.Hub.Queue(["Text", math, newequ]);
         }
     </script>    
 </head>
 
 <body>
     <!--This is for MathML-->
-    <script type="math/mml" id="equationml">
-        <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:mi>ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mi>κ</mml:mi><mml:msup><mml:mrow><mml:mo>∇</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mi>ψ</mml:mi></mml:math>
-    </script>
+    <div>
+        <header>
+            This is for LaTex
+        </header>
+
+        <script type="math/tex; mode=display" id="equationtex">
+            \frac{\partial\psi}{\partial t}=\kappa\mathrm{\nabla}^2\psi
+        </script>
+    </div>
+
+
+    <!--This is for MathML-->
+    <div>
+        <header>
+            This is for MathML
+        </header>
+
+        <script type="math/mml" id="equationml">
+            <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:mi>ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mi>κ</mml:mi><mml:msup><mml:mrow><mml:mo>∇</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mi>ψ</mml:mi></mml:math>
+        </script>
+    </div>
 </body>
 </html>

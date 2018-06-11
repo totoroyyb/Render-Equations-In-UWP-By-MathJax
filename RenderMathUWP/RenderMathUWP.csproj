@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\LatexStringFormer.cs" />
     <Compile Include="View\Dynamic.xaml.cs">
       <DependentUpon>Dynamic.xaml</DependentUpon>
     </Compile>

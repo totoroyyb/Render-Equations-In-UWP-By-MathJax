@@ -15,21 +15,35 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <WebView Name="TestWebView" Source="ms-appx-web:///HTML/RenderEquationDynamically.html" DefaultBackgroundColor="Transparent"
-                 LoadCompleted="TestWebView_LoadCompleted"/>
-        
-        <Grid Grid.Row="1">
+        <WebView Name="TestWebView" Source="ms-appx-web:///HTML/RenderEquationDynamically.html" DefaultBackgroundColor="Transparent"/>
+
+        <TextBlock Text="Notice! You need to click Load MathJax On-Demand first!" Grid.Row="1"
+                   FontSize="20" Foreground="Red"/>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox PlaceholderText="Enter your MathML in here and click render button" Name="MathMLBox"/>
-            <Button Grid.Column="1" Content="Render" Click="Button_Click"/>
+            <Button Content="Load MathJax On-Demand" Name="LoadButton" Click="LoadButton_Click"/>
+
+            <TextBox Grid.Column="1" PlaceholderText="Enter your MathML in here and click render button" Name="MathMLBox"
+                     IsEnabled="False"/>
+            
+            <ComboBox Grid.Column="2" Name="LangComboBox" SelectedIndex="0" IsEnabled="False">
+                <ComboBoxItem Name="MMLItem" Content="MathML"/>
+                <ComboBoxItem Name="TexItem" Content="LaTex"/>
+            </ComboBox>
+            
+            <Button Grid.Column="3" Content="Change Equation" Click="Button_Click" IsEnabled="False"
+                    Name="ChangeButton"/>
         </Grid>
 
-        <TextBlock Text="Notice! LaTex is not supported when you try to modify it dynamically! MathJax cannot render it correctly somehow"
+        <!--<TextBlock Text="Notice! LaTex is not supported when you try to modify it dynamically! MathJax cannot render it correctly somehow"
                    TextWrapping="Wrap"
-                   Grid.Row="2" FontSize="15"/>
+                   Grid.Row="2" FontSize="15"/>-->
     </Grid>
 </Page>

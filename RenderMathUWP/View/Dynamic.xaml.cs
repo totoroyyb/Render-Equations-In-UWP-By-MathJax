@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using RenderMathUWP.Helper;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,9 +26,36 @@ namespace RenderMathUWP.View
         public Dynamic()
         {
             this.InitializeComponent();
+        } 
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string str = MathMLBox.Text;
+            string langStr;
+            
+            if (LangComboBox.SelectedItem == TexItem)
+            {
+                langStr = "equationtex";
+                str = LatexStringFormer.AddBackSlash(str);
+            }
+            else
+            {
+                langStr = "equationml";
+            }
+
+            string combinedString = langStr + "," + str;
+
+            try
+            {
+                await TestWebView.InvokeScriptAsync("ChangeEquation", new string[] { combinedString });
+            }
+            catch
+            {
+
+            }
         }
 
-        private async void TestWebView_LoadCompleted(object sender, NavigationEventArgs e)
+        private async void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -37,18 +65,10 @@ namespace RenderMathUWP.View
             {
 
             }
-        }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await TestWebView.InvokeScriptAsync("ChangeEquation", new string[] { MathMLBox.Text });
-            }
-            catch
-            {
-
-            }
+            MathMLBox.IsEnabled = true;
+            LangComboBox.IsEnabled = true;
+            ChangeButton.IsEnabled = true;
         }
     }
 }
