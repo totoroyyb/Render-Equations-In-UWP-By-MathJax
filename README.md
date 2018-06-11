@@ -1,4 +1,4 @@
-﻿﻿# Render-Math-Equations-In-UWP
+# Render-Math-Equations-In-UWP
 This is a demo of rendering math equations in UWP by utilizing JavaScript, MathJax, WinJS and XAML WebView.
 
 # Build
