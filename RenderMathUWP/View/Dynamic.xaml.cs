@@ -30,13 +30,18 @@ namespace RenderMathUWP.View
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string str = MathMLBox.Text;
+            string str = MathBox.Text;
             string langStr;
             
             if (LangComboBox.SelectedItem == TexItem)
             {
                 langStr = "equationtex";
-                str = LatexStringFormer.AddBackSlash(str);
+
+                //Since C# will automatically double the backslash in the string
+                //so we don't need use the function below
+                //if you want to make it double backslash
+                //uncomment the function below
+                //str = LatexStringFormer.AddBackSlash(str);
             }
             else
             {
@@ -66,7 +71,7 @@ namespace RenderMathUWP.View
 
             }
 
-            MathMLBox.IsEnabled = true;
+            MathBox.IsEnabled = true;
             LangComboBox.IsEnabled = true;
             ChangeButton.IsEnabled = true;
         }
